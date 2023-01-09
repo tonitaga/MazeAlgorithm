@@ -18,6 +18,8 @@ namespace s21
         {
             if (rows <= 0 || cols <= 0)
                 throw std::bad_array_new_length();
+            rows = rows % 2 == 0 ? rows + 1 : rows;
+            cols = cols % 2 == 0 ? cols + 1 : cols;
             CreateMazeMatrix();
         }
         MazeMatrix(const MazeMatrix &other)

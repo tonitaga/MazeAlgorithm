@@ -22,7 +22,8 @@ namespace s21
             y_ = position.Y();
         }
 
-        Position &operator+=(const Position &other) {
+        Position &operator+=(const Position &other)
+        {
             x_ += other.X();
             y_ += other.Y();
             return *this;
