@@ -23,7 +23,7 @@ namespace s21
     {
         if (cols <= 0)
         {
-            throw std::out_of_range("setCol: 'cols' element less or equal zero!");
+            throw std::out_of_range("Invalid input!");
         }
         MazeMatrix tmp_this(*this);
         RemoveMazeMatrix();

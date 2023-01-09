@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CC="g++"
-SRC="main.cc"
+SRC="main.cc Model/ConsoleHelper/MazeMatrix/mazematrix.cc"
 EXE="maze.exe"
 
 $CC $SRC -o $EXE
