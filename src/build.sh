@@ -1,9 +1,10 @@
 #!/bin/bash
 
-CC="g++"
-SRC="main.cc Model/ConsoleHelper/MazeMatrix/mazematrix.cc"
+CC="g++ -std=c++17"
+CFLAGS="-Wall -Werror -Wextra"
+SRC="main.cc Model/ConsoleHelper/MazeMatrix/mazematrix.cc Model/ConsoleMaze/consolemaze.cc"
 EXE="maze.exe"
 
-$CC $SRC -o $EXE
+$CC $CFLAGS $SRC -o $EXE
 ./$EXE
 rm ./$EXE

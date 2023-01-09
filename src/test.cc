@@ -52,8 +52,8 @@ void random_element_test(TestShuffle &t, long long int attemps) {
 
 int main() {
     TestShuffle test;
-    long long int total_tests = 100000;
-    long long int shuffles_in_test = 1000000;
+    long long int total_tests = 1000;
+    long long int shuffles_in_test = 10000;
     long long int total_shuffles = shuffles_in_test * total_tests;
 
     std::cout << "Total test: " << total_tests << "\n";

@@ -2,11 +2,10 @@
 
 #include "Model/ConsoleMaze/consolemaze.hpp"
 
-using namespace s21;
-
 int main()
 {
-    ConsoleMaze maze(11, 11);
+    s21::ConsoleMaze maze(51, 145);
     maze.GenerateMaze();
+    maze.RegenerateMaze();
     return 0;
 }
