@@ -43,12 +43,21 @@ namespace s21
             std::cout << "Maze building time is (milliseconds) -> " << duration_cast<milliseconds>(stop - start).count() << "\n";
         }
 
-        void RegenerateMaze()
+        void SetMazeSize(int height, int width)
         {
-            maze_ = MazeMatrix(maze_.GetRow(), maze_.GetCol());
-            InitializeDefaultStateMazeWalls();
-            GenerateMaze();
+            maze_.SetRow(height);
+            maze_.SetCol(width);
+            ResetMaze();
         }
+
+        void ResetMaze()
+        {
+            maze_.Clear();
+            InitializeDefaultStateMazeWalls();
+        }
+
+        int GetMazeWidth() const { return maze_.GetCol(); }
+        int GetMazeHeihgt() const { return maze_.GetRow(); }
 
     private:
         void ShowMaze();

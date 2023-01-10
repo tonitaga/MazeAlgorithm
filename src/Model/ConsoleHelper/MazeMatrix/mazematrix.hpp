@@ -55,17 +55,24 @@ namespace s21
         void SetRow(int row);
         void SetCol(int col);
 
+        void Clear()
+        {
+            for (int row = 0; row != rows_; ++row)
+                for (int col = 0; col != cols_; ++col)
+                    matrix_[row][col] = char();
+        }
+
         char &operator()(int row, int col)
         {
             if (row < 0 || col < 0 || row >= rows_ || col >= cols_)
-                throw std::out_of_range("Invalid input!");
+                throw std::out_of_range("operator(): Invalid input!");
             return matrix_[row][col];
         }
 
         char operator()(int row, int col) const
         {
             if (row < 0 || col < 0 || row >= rows_ || col >= cols_)
-                throw std::out_of_range("Invalid input!");
+                throw std::out_of_range("operator() const: Invalid input!");
             return matrix_[row][col];
         }
 
