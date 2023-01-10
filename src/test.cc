@@ -2,11 +2,13 @@
 #include <vector>
 #include <algorithm>
 
-struct TestShuffle {
+struct TestShuffle
+{
     long long int zero = 0, one = 0, two = 0, three = 0, four = 0, five = 0, six = 0, seven = 0, eight = 0, nine = 0;
 };
 
-void random_element_test(TestShuffle &t, long long int attemps) {
+void RandomElementTest(TestShuffle &t, long long int attemps)
+{
     std::vector<int> digits({0, 1, 2, 3, 4, 5, 6, 7, 8, 9});
     long long int i = 0;
     while (i != attemps)
@@ -45,12 +47,12 @@ void random_element_test(TestShuffle &t, long long int attemps) {
         case 9:
             t.nine += 1;
             break;
-
         }
     }
 }
 
-int main() {
+int main()
+{
     TestShuffle test;
     long long int total_tests = 1000;
     long long int shuffles_in_test = 1000;
@@ -60,11 +62,12 @@ int main() {
     std::cout << "Shuffles in one test: " << shuffles_in_test << "\n";
     std::cout << "Total shuffles: " << total_shuffles << "\n";
 
-    for (int current_test = 0; current_test != total_tests; ++current_test) {
-        random_element_test(test, shuffles_in_test);
+    for (int current_test = 0; current_test != total_tests; ++current_test)
+    {
+        RandomElementTest(test, shuffles_in_test);
     }
-    
-    std::cout << "Average chance of vector[0]: " << (test.zero / (double)total_shuffles) * 100.0 << "%\n"; 
+
+    std::cout << "Average chance of vector[0]: " << (test.zero / (double)total_shuffles) * 100.0 << "%\n";
     std::cout << "Average chance of vector[1]: " << (test.one / (double)total_shuffles) * 100.0 << "%\n";
     std::cout << "Average chance of vector[2]: " << (test.two / (double)total_shuffles) * 100.0 << "%\n";
     std::cout << "Average chance of vector[3]: " << (test.three / (double)total_shuffles) * 100.0 << "%\n";

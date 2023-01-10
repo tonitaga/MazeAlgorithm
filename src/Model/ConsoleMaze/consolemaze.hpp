@@ -13,11 +13,13 @@ using namespace std::chrono; // ! only for working time test
 
 namespace s21
 {
+    const int TR_COUNT{1000};
+
     class ConsoleMaze
     {
     private:
         MazeMatrix maze_;
-        MazeTractor tractor_;
+        MazeTractor tractor_[TR_COUNT];
 
         const char DEFAULT_MAZEWALL_SYMBOL{'O'};
         const char DEFAULT_MAZENOWALL_SYMBOL{' '};
@@ -27,20 +29,47 @@ namespace s21
         {
             maze_ = MazeMatrix(rows % 2 == 0 ? rows + 1 : rows, cols % 2 == 0 ? cols + 1 : cols);
             InitializeDefaultStateMazeWalls();
+            std::cout << "Maze was created with: rows - " << maze_.GetRow() << "; cols - " << maze_.GetCol() << "\n";
         }
 
-        void GenerateMaze()
+        void GenerateMaze(bool print = true)
         {
             auto start = high_resolution_clock::now();
             while (!IsValidMaze())
             {
-                auto offset_position = MoveTractor();
-                InitializeMazeAfterTractorMove(offset_position);
+                for (int current = 0; current != TR_COUNT; ++current)
+                {
+                    auto direction = MoveTractor(tractor_[current]);
+                    InitializeMazeAfterTractorMove(direction, tractor_[current]);
+                }
             }
             auto stop = high_resolution_clock::now();
-            ShowMaze();
+            if (print)
+                ShowMaze();
             std::cout << "Maze building time is (seconds) -> " << (duration_cast<milliseconds>(stop - start).count()) / 1000.0 << "\n";
             std::cout << "Maze building time is (milliseconds) -> " << duration_cast<milliseconds>(stop - start).count() << "\n";
+        }
+
+        void GenerateMazeInteractive()
+        {
+            ResetMaze();
+            auto start = high_resolution_clock::now();
+            while (!IsValidMaze())
+            {
+                for (int current = 0; current != TR_COUNT; ++current)
+                {
+                    auto direction = MoveTractor(tractor_[current]);
+                    InitializeMazeAfterTractorMove(direction, tractor_[current]);
+                }
+                ShowMaze();
+                system("clear");
+            }
+            ShowMaze();
+            auto stop = high_resolution_clock::now();
+            std::cout << "Maze was generated successfully!\n";
+            std::cout << "Maze building time is (seconds) -> " << (duration_cast<milliseconds>(stop - start).count()) / 1000.0 << "\n";
+            std::cout << "Maze building time is (milliseconds) -> " << duration_cast<milliseconds>(stop - start).count() << "\n";
+            std::cout << "Tractor count: " << TR_COUNT << "\n";
         }
 
         void SetMazeSize(int height, int width)
@@ -62,9 +91,9 @@ namespace s21
     private:
         void ShowMaze();
         void InitializeDefaultStateMazeWalls();
-        void InitializeMazeAfterTractorMove(Position offset);
+        void InitializeMazeAfterTractorMove(Position offset, MazeTractor tractor);
         bool IsValidMaze();
-        Position MoveTractor();
+        Position MoveTractor(MazeTractor &tractor);
         Position GetRandomDirection(std::vector<Position> directions);
     };
 } // !namespace s21 end

@@ -1,15 +1,14 @@
 #include <iostream>
-#include <windows.h>
 
 #include "Model/ConsoleMaze/consolemaze.hpp"
 
 int main()
 {
-    s21::ConsoleMaze maze(25, 55);
-    for (int i = 0; i != 10; ++i) {
-        maze.GenerateMaze();
+    s21::ConsoleMaze maze(50, 100);
+    for (int i = 0; i != 1; ++i)
+    {
+        maze.GenerateMazeInteractive();
         maze.ResetMaze();
-        Sleep(1500);
     }
     return 0;
 }

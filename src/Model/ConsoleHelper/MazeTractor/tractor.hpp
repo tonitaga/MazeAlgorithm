@@ -43,7 +43,7 @@ namespace s21
 
         MazeTractor &operator=(const MazeTractor &other)
         {
-            position_ = other.position_;
+            position_.SetPosition(other.position_);
             return *this;
         }
 
