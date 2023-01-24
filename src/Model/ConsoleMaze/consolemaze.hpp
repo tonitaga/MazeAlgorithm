@@ -11,15 +11,12 @@
     #include <unistd.h>
 #endif
 
-// #include <chrono>            // ! only for working time test
-// using namespace std::chrono; // ! only for working time test
-
 #include "../ConsoleHelper/MazeMatrix/mazematrix.hpp"
 #include "../ConsoleHelper/MazeTractor/tractor.hpp"
 
 namespace s21
 {
-    const int TR_COUNT{750};
+    const int TR_COUNT{1750};
 
     class ConsoleMaze
     {
@@ -39,7 +36,6 @@ namespace s21
 
         void GenerateMaze(bool print = true)
         {
-            // auto start = high_resolution_clock::now();
             while (!IsValidMaze())
             {
                 for (int current = 0; current != TR_COUNT; ++current)
@@ -48,17 +44,13 @@ namespace s21
                     InitializeMazeAfterTractorMove(direction, tractor_[current]);
                 }
             }
-            // auto stop = high_resolution_clock::now();
             if (print)
                 ShowMaze();
-            // std::cout << "Maze building time is (seconds) -> " << (duration_cast<milliseconds>(stop - start).count()) / 1000.0 << "\n";
-            // std::cout << "Maze building time is (milliseconds) -> " << duration_cast<milliseconds>(stop - start).count() << "\n";
         }
 
         void GenerateMazeInteractive()
         {
             ResetMaze();
-            // auto start = high_resolution_clock::now();
             while (!IsValidMaze())
             {
                 for (int current = 0; current != TR_COUNT; ++current)
@@ -70,11 +62,6 @@ namespace s21
                 system("clear");
             }
             ShowMaze();
-            // auto stop = high_resolution_clock::now();
-            // std::cout << "Maze was generated successfully!\n";
-            // std::cout << "Maze building time is (seconds) -> " << (duration_cast<milliseconds>(stop - start).count()) / 1000.0 << "\n";
-            // std::cout << "Maze building time is (milliseconds) -> " << duration_cast<milliseconds>(stop - start).count() << "\n";
-            // std::cout << "Tractor count: " << TR_COUNT << "\n";
         }
 
         void SetMazeSize(int height, int width)

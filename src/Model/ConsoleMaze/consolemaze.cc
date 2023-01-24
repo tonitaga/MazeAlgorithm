@@ -4,14 +4,21 @@ namespace s21
 {
     void ConsoleMaze::ShowMaze()
     {
-        for (int row = -1; row != maze_.GetRow() + 1; ++row) {
-            for (int col = -1; col != maze_.GetCol() + 1; ++col) {
-                if (row == -1 || row == maze_.GetRow()) {
+        for (int row = -1; row != maze_.GetRow() + 1; ++row)
+        {
+            for (int col = -1; col != maze_.GetCol() + 1; ++col)
+            {
+                if (row == -1 || row == maze_.GetRow())
+                {
                     printf("%c", '=');
-                } else if (col == -1 || col == maze_.GetCol()) {
+                }
+                else if (col == -1 || col == maze_.GetCol())
+                {
                     printf("%s", "||");
-                } else {
-                     printf("%c", maze_(row, col));
+                }
+                else
+                {
+                    printf("%c", maze_(row, col));
                 }
             }
             std::cout << std::endl;
